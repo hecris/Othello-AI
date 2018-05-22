@@ -121,7 +121,7 @@ public class GameManager3 : MonoBehaviour {
             for (int j = 0; j < 8; j++)
             {
                 List<Coordinate> captures = CaptureAll(i, j, color);
-                if (captures.Count > 0)
+                if (captures.Count > 0 && board[i,j] == empty)
                 {
                     possible.Add(new Coordinate(i, j));
                     
