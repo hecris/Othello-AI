@@ -252,7 +252,7 @@ public class GameManager3 : MonoBehaviour {
 
     static bool isOnBoard(int r, int c)
     {
-        return (0 < r && r < 7 && 0 < c && c < 8);
+        return (0 < r && r < 8 && 0 < c && c < 8);
     }
 
 
