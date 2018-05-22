@@ -1,6 +1,6 @@
-WindowsStandalone
+WebGL
 PlayerPath?
-C:/Users/guy/Documents/Othello-AI/Othello AI/Othello AI.exe
+C:/Users/guy/Desktop
 SceneListBegin?
 Assets/Scenes/SampleScene.unity
 SceneListEnd?

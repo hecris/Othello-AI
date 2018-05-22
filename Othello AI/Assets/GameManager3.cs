@@ -141,7 +141,7 @@ public class GameManager3 : MonoBehaviour {
             {
                 board[coor.getX(), coor.getY()] = color;
             }
-            Debug.Log(r + "," + c);
+            Debug.Log(color + ":    " + r + "," + c);
             return true;
         }
         else
