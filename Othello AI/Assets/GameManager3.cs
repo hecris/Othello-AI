@@ -209,7 +209,7 @@ public class GameManager3 : MonoBehaviour {
                 {
                     if (board[r + dr * i, c + dc * i] == OppositeOf(color))
                     {
-                        if (i < 6)
+                        if (i < 7)
                         {
                             piecesToCapture.Add(new Coordinate(r + dr * i, c + dc * i));
                             i++;
