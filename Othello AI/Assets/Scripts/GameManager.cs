@@ -12,15 +12,19 @@ public class GameManager : MonoBehaviour {
 	int computer;
 
 	void displayBoard(){
-		for (int i = 8; i > 0; i--) {
-			for (int j = 8; j > 0; j--){
+		for (int i = 7; i >= 0; i--) {
+			for (int j = 7; j >= 0; j--){
 				GameObject square;
 				Vector2 position = new Vector2(i, j);
 				if (s.b.board[i,j] == -1){ // if square is black
 					square = Instantiate (prefabs[2], parent);
+					square.transform.position = position;
+					square.name = position.ToString ();
 					continue;
 				}
 				square = Instantiate (prefabs[s.b.board[i,j]], parent);
+				square.transform.position = position;
+				square.name = position.ToString ();
 			}
 		}
 
