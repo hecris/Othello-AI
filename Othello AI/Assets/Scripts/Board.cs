@@ -74,15 +74,46 @@ class Board
                 {
                     p.Add(s);
                 }
-                else if (isOnBoard(s) && board[s.x, s.y] == color)
+				else if (isOnBoard(s) && (board[s.x, s.y] == color))
                 {
                     return p;
                 }
+				else if (isOnBoard(s) && board[s.x, s.y] == 0){
+					return new List<Coordinate>();
+				}
             }
         }
 
         return new List<Coordinate>();
     }
+
+
+	public int nWhite(){
+		int count = 0;
+		for (int i = 0; i < 8; i++) {
+			for (int j = 0; j < 8; j++){
+				if (board[i, j] == 1){
+					count += 1;
+				}
+			}
+
+		}
+		return count;
+	}
+
+	public int nBlack(){
+		int count = 0;
+		for (int i = 0; i < 8; i++) {
+			for (int j = 0; j < 8; j++){
+				if (board[i, j] == -1){
+					count += 1;
+				}
+			}
+			
+		}
+		return count;
+	}
+
 
 }
 

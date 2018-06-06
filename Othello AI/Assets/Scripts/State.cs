@@ -87,6 +87,9 @@ class State
         return false;
     }
 
+	public bool GameOver(){
+		return false;
+	}
 
 
 }

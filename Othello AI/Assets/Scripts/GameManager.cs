@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class GameManager : MonoBehaviour
     AI ai = new AI();
     int player;
     int computer;
+	public int depth;
+	public GameObject nWhite;
+	public GameObject nBlack;
 
     void displayBoard()
     {
@@ -18,24 +22,23 @@ public class GameManager : MonoBehaviour
         {
             Destroy(children.gameObject);
         }
-        for (int i = 0; i < 8; i++)
-        {
-            for (int j = 0; j < 8; j++)
-            {
-                GameObject square;
-                Vector2 position = new Vector2(j, 7 - i);
-                if (s.b.board[i, j] == -1)
-                { // if square is black
-                    square = Instantiate(prefabs[2], parent);
-                    square.transform.position = position;
-                    square.name = i.ToString() + "," + j.ToString();
-                    continue;
-                }
-                square = Instantiate(prefabs[s.b.board[i, j]], parent);
-                square.transform.position = position;
-                square.name = i.ToString() + "," + j.ToString();
-            }
-        }
+        for (int i = 0; i < 8; i++) {
+			for (int j = 0; j < 8; j++) {
+				GameObject square;
+				Vector2 position = new Vector2 (j, 7 - i);
+				if (s.b.board [i, j] == -1) { // if square is black
+					square = Instantiate (prefabs [2], parent);
+					square.transform.position = position;
+					square.name = i.ToString () + "," + j.ToString ();
+					continue;
+				}
+				square = Instantiate (prefabs [s.b.board [i, j]], parent);
+				square.transform.position = position;
+				square.name = i.ToString () + "," + j.ToString ();
+			}
+		}
+		nWhite.GetComponent<Text>().text = "White: " + s.b.nWhite();
+		nBlack.GetComponent<Text>().text = "Black: " + s.b.nBlack();
 
     }
     // Use this for initialization
@@ -56,8 +59,8 @@ public class GameManager : MonoBehaviour
 
     IEnumerator Move()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
+		if (Input.GetMouseButtonDown(0)&& s.possibleMoves ().Count != 0)
+		{
             Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(worldPoint, Vector2.zero);
             if (hit.collider != null)
@@ -68,13 +71,17 @@ public class GameManager : MonoBehaviour
                 {
                     s = s.Place(m);
                     displayBoard();
-                    yield return new WaitForSeconds(1);
-                    s = s.Place(ai.bestMove(s, 1));
+                    yield return new WaitForSeconds(.1f);
+                    s = s.Place(ai.bestMove(s, depth));
                     displayBoard();
                 }
-
             }
         }
-    }
-
+		if (s.possibleMoves ().Count == 0) {
+			s.player = -s.player;
+			s = s.Place(ai.bestMove(s, depth));
+			displayBoard();// switch turn if no possible moves for current turn
+		}
+	}
+	
 }
