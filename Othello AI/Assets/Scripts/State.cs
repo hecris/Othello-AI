@@ -88,9 +88,9 @@ class State
     }
 
 	public bool GameOver(){
-		return false;
+        State opposite = new State(this.b, -player);
+        return (possibleMoves().Count == 0 && opposite.possibleMoves().Count() == 0) ;
 	}
-
 
 }
 
