@@ -79,8 +79,8 @@ public class GameManager : MonoBehaviour
         }
 		if (s.possibleMoves ().Count == 0) {
 			s.player = -s.player;
-			s = s.Place(ai.bestMove(s, depth));
-			displayBoard();// switch turn if no possible moves for current turn
+            s = s.Place(ai.bestMove(s, depth));
+            displayBoard();// switch turn if no possible moves for current turn
 		}
 	}
 	

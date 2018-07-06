@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 class AI
 {
@@ -24,49 +25,61 @@ class AI
         return children;
     }
 
-    public int[] Minimax(State s, int depth)
+   public int Minimax(State s, int depth, bool maxPlayer)
     {
-        List<State> children = possibleChildren(s);
-        int[] values = new int[children.Count];
         if (depth == 0)
         {
-            for (int i = 0; i < children.Count; i++)
-            {
-                values[i] = e.evaluate2(children[i]);
-            }
-            return values;
+            return e.evaluate2(s);
         }
-
         else
         {
-            for (int i = 0; i < children.Count; i++)
+            if (maxPlayer)
             {
-                int[] placeHolder = Minimax(children[i], depth - 1);
-                if (depth % 2 != 0)
+                List<State> children = possibleChildren(s);
+                int bestValue = -9999;
+                foreach (State c in children)
                 {
-                    int max = placeHolder.Max();
-
-                    values[i] = max;
+                   
+                    int v = Minimax(c, depth - 1, false);
+                    bestValue = Math.Max(v, bestValue);
                 }
-                else
+                return bestValue;
+            }
+            else
+            {
+                List<State> children = possibleChildren(s);
+                int bestValue = 9999;
+                foreach (State c in children)
                 {
-                    int min = placeHolder.Min();
-                    values[i] = min;
+                    
+                    int v = Minimax(c, depth - 1, true);
+                    bestValue = Math.Min(v, bestValue);
                 }
-
-
+                return bestValue;
             }
         }
-        return values;
+        
     }
-
+    
     public Coordinate bestMove(State s, int depth)
     {
+        
+        int bestValue = Minimax(s, depth, true);
+        Debug.Log(bestValue);
         List<Coordinate> moves = s.possibleMoves();
-        int[] values = Minimax(s, depth);
-        int max = values.Max();
-        int ind = values.ToList().IndexOf(max);
-        return (moves[ind]);
+        List<State> children = possibleChildren(s);
+
+        for (int i = 0; i < children.Count; i++)
+        {
+            int v = e.evaluate2(children[i]);
+            if (v == bestValue)
+            {
+                return moves[i];
+            }
+        }
+        return null;
+
+
     }
 
 }

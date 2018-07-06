@@ -166,3 +166,4 @@ C:\Users\guy\Desktop\Github\Othello-Unity\Othello AI\obj\Debug\Assembly-CSharp.c
 C:\Users\guy\Desktop\Github\Othello-Unity\Othello AI\obj\Debug\Assembly-CSharp.csproj.CopyComplete
 C:\Users\guy\Desktop\Github\Othello-Unity\Othello AI\obj\Debug\Assembly-CSharp.dll
 C:\Users\guy\Desktop\Github\Othello-Unity\Othello AI\obj\Debug\Assembly-CSharp.pdb
+C:\Users\guy\Desktop\Github\Othello-Unity\Othello AI\Temp\bin\Debug\UnityEngine.WebGLModule.dll
