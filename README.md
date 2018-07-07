@@ -7,3 +7,4 @@ Functional Othello board with simple Minimax AI created in Unity using C#.
 ## Future Improvements
 - Implement Alpha beta pruning
 - Implement winning state
+- Improve UI
