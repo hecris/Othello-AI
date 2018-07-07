@@ -72,16 +72,16 @@ public class GameManager : MonoBehaviour
                     s = s.Place(m);
                     displayBoard();
                     yield return new WaitForSeconds(.1f);
-                    s = s.Place(ai.bestMove(s, depth));
+                    s = ai.getBestState(s, depth);
                     displayBoard();
                 }
             }
         }
-		if (s.possibleMoves ().Count == 0) {
+		/*if (s.possibleMoves ().Count == 0) {
 			s.player = -s.player;
             s = s.Place(ai.bestMove(s, depth));
             displayBoard();// switch turn if no possible moves for current turn
-		}
+		}*/
 	}
 	
 }

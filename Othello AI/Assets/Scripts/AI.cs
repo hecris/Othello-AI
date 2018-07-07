@@ -24,8 +24,8 @@ class AI
         }
         return children;
     }
-
-   public int Minimax(State s, int depth, bool maxPlayer)
+    List<int> values = new List<int>();
+   public int Minimax(State s, int depth, bool maxPlayer, bool isFirst)
     {
         if (depth == 0)
         {
@@ -33,27 +33,32 @@ class AI
         }
         else
         {
+            List<State> children = possibleChildren(s);
             if (maxPlayer)
             {
-                List<State> children = possibleChildren(s);
                 int bestValue = -9999;
                 foreach (State c in children)
                 {
                    
-                    int v = Minimax(c, depth - 1, false);
-                    bestValue = Math.Max(v, bestValue);
+                    int v = Minimax(c, depth - 1, false, false);
+
+                    bestValue = Math.Max(bestValue, v);
+                    if (isFirst)
+                    {
+                        values.Clear();
+                        values.Add(bestValue);
+                    }
                 }
                 return bestValue;
             }
             else
             {
-                List<State> children = possibleChildren(s);
                 int bestValue = 9999;
                 foreach (State c in children)
                 {
                     
-                    int v = Minimax(c, depth - 1, true);
-                    bestValue = Math.Min(v, bestValue);
+                    int v = Minimax(c, depth - 1, true, false);
+                    bestValue = Math.Min(bestValue, v);
                 }
                 return bestValue;
             }
@@ -61,26 +66,14 @@ class AI
         
     }
     
-    public Coordinate bestMove(State s, int depth)
+    public State getBestState(State s, int depth)
     {
-        
-        int bestValue = Minimax(s, depth, true);
-        Debug.Log(bestValue);
-        List<Coordinate> moves = s.possibleMoves();
+        int bestValue = Minimax(s, depth, true, true);
+        int index = values.IndexOf(bestValue);
+        Debug.Log(index);
         List<State> children = possibleChildren(s);
-
-        for (int i = 0; i < children.Count; i++)
-        {
-            int v = e.evaluate2(children[i]);
-            if (v == bestValue)
-            {
-                return moves[i];
-            }
-        }
-        return null;
-
-
+        return children[index];
     }
-
 }
 
+ 

@@ -7,6 +7,7 @@ class State
 {
     public Board b = new Board();
     public int player;
+    BoardEvaluator e;
 
     public State()
     { // initial state
@@ -50,6 +51,7 @@ class State
         }
         return p;
     }
+
 
     public State Place(Coordinate m)
     {
