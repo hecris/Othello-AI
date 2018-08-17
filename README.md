@@ -2,7 +2,7 @@
 Functional Othello board with simple Minimax AI created in Unity using C#. 
 
 ## Play
-[PLAY NOW!](https://hecris.github.io/Othello-Unity/Othello%20AI/Builds/WebGL/index.html)
+[PLAY NOW!](https://hecris.github.io/Othello-AI/Othello%20AI/Builds/WebGL/index.html)
 
 ## Future Improvements
 - [x] Add [.gitignore](https://github.com/github/gitignore/blob/master/Unity.gitignore)
