@@ -1,4 +1,4 @@
-# Othello-Unity
+# Othello-AI
 Functional Othello board with simple Minimax AI created in Unity using C#. 
 
 ## Play
